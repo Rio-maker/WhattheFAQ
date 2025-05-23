@@ -1,2 +1,0 @@
-# WhattheFAQ
-Testing testing
