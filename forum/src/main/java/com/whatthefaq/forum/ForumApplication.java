@@ -9,12 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Objects;
 
 @SpringBootApplication
 public class ForumApplication {
 
 	public static void main(String[] args) throws IOException {
+
+		// Connecting to firebase
 		ClassLoader classLoader = ForumApplication.class.getClassLoader();
 
 		File file = new File(Objects.requireNonNull(classLoader.getResource("serviceAccountKey.json")).getFile());
@@ -26,6 +29,13 @@ public class ForumApplication {
 				.build();
 
 		FirebaseApp.initializeApp(options);
+
+//		InputStream serviceAccount = ForumApplication.class.getClassLoader().getResourceAsStream("serviceAccountKey.json");
+//
+//		FirebaseOptions options = FirebaseOptions.builder()
+//				.setCredentials(GoogleCredentials.fromStream(serviceAccount))
+//				.build();
+//		FirebaseApp.initializeApp(options);
 
 		SpringApplication.run(ForumApplication.class, args);
 	}
